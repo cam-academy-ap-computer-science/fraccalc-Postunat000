@@ -12,13 +12,16 @@ public class FracCalc {
     public static void main(String[] args) {
     	Scanner console = new Scanner(System.in);
     	String input;
-    	while (input != "quit")
-        System.out.print("What calculation would you like me to perform for you, my liege? ");
+    	
+        System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
         input = console.nextLine();
-
+        
+    	while (!input.equals("quit")) {
         String second = produceAnswer(input);
         System.out.println("The second fraction is " + second);
         System.out.println();
+        System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
+        input = console.nextLine();
         }
     }
     
