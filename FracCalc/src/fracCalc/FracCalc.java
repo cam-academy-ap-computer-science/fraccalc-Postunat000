@@ -41,32 +41,40 @@ public class FracCalc {
     public static void firstFraction(String input) {
     	int space = input.indexOf(" ");
     	String first = input.substring(0, space);
+    	System.out.println("first: " + first);
+    	System.out.println();
     	
-    	if (first.contains("_")) {
-    		int whoole = first.indexOf("_");
-    		int denommm = first.indexOf("//");
-    		String whole = first.substring(0, whoole);
-    		
-        	System.out.print("whole: " + whole);
-    		
-    		String numerr = first.substring((whoole + 1), denommm);
-        	System.out.print("  numerator: " + numerr);
+		int length = first.length();
+    	int slash = first.indexOf("/");
+    	
+    	String whole = "0";
+    	String numer = "0";
+    	String denom = "0";
+    	
+    	//sets whole number
+		int index1 = first.indexOf("_");
+    	if (index1 > 0) {
+    		whole = first.substring(0, index1);
     	}
-    	if (first.contains("//")) {
-    		int lengthh = first.length();
-        	int denomm = first.indexOf("//");
-        	String denom = first.substring(denomm, lengthh);
-        	
-        	System.out.print("  demoninator: " + denom);
+    	//sets numerator if there is an underscore (with whole number)
+    	if (index1 > 0) {
+    		numer = first.substring((index1 + 1), slash);
+        //sets numerator if there is no underscore (no whole number)
+    	} else {
+    		numer = first.substring(0, slash);
     	}
-    	else {
+    	
+    	//sets denominator
+    	if (slash > 0) {
+    		denom = first.substring((slash + 1), length);
+    		
+    	} else {
         	System.out.println();
-    		String whooole = first;
-    		int numer = 0;
-    		int denoom = 0;
-    		
-        	System.out.println("whole: " + whooole + "  numerator: " + numer + "  denominator: " + denoom);
+    		whole = first;
+    		denom = "1";
     	}
+    	System.out.println("whole: " + whole + "  numerator: " + numer + "  denominator: " + denom);
+    	System.out.println();
     }
     
     /* secondFraction is also for identifying each integer within the second variable
@@ -74,7 +82,6 @@ public class FracCalc {
      * main method */
     
     public static void secondFraction(String second) {
-    	System.out.println(second);
     	
     }
 }
