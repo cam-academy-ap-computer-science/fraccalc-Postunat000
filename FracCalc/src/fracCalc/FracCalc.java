@@ -10,136 +10,73 @@ import java.util.Scanner;
 public class FracCalc {
 
     public static void main(String[] args) {
-    	Scanner console = new Scanner(System.in);
-    	String input;
-    	String[] list1 = new String [3];
+    	Scanner console = new Scanner(System.in); 	
+        System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
+        String input = console.nextLine();
+        
+    	while (!input.equals("quit")) {
+        String operand2 = produceAnswer(input);
+        //System.out.println("The second fraction is: " + operand2);
+        System.out.println();
+        
         System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
         input = console.nextLine();
-        produceAnswer(input);
-    	//while (!input.equals("quit")) {
-        //String second = produceAnswer(input);
-        //String firstFracArray = firstFraction(input);
-        //String secondFracArray = secondFraction(input);
-        
-        //System.out.println();
-        //System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
-        //input = console.nextLine();
         }
     }
     
-    public static String produceAnswer(String input) { 
-    	//int length = input.length();
-    	//int space = input.indexOf(" ") + 3;
+    public static String produceAnswer(String input) {
+    	int length = input.length();
+    	int space1 = input.indexOf(" ");
+    	int space2 = space1 + 3;
     	
-    	//return input.substring(space, length);
+    	String operand1 = input.substring(0, space1);
+    	String operand2 = input.substring(space2, length);
+    	String operator = input.substring((space1 + 1), (space1 + 2));
+    	//System.out.println("operand1: " + operand1 + " operand2: " + operand2 + " operator: " + operator);
+        String firstFrac = firstFraction(operand1);
+        String secondFrac = firstFraction(operand2);
+        System.out.println(secondFrac);
     	
-    	/*Scanner console = new Scanner(System.in);
-    	String input;
-    	String[] list1 = new String [3];
-        System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
-        input = console.nextLine(); */
-        
-    	while (!input.equals("quit")) {
-        //String second = produceAnswer(input);
-        String firstFracArray = firstFraction(input);
-        
-        String secondFracArray = secondFraction(input);
-        
-        System.out.println();
-        System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
-        input = console.nextLine();
-        
-    	}
-    	System.out.println("whole:" + whole + " numerator:" + numer + " denominator:" + denom);
+    	return secondFrac;
     }
     
     /* firstFraction is for identifying each number within the first variable in the 
      * String, and then returns a completed statement with all numbers within it
      * called out */
     
-    public static String firstFraction(String input) {
-    	int space = input.indexOf(" ");
-    	String first = input.substring(0, space);
-    	
-		int length = first.length();
-    	int slash = first.indexOf("/");
+    public static String firstFraction(String input) {	
+		int length = input.length();
+    	int slash = input.indexOf("/");
+    	//System.out.print(input);
     	
     	String whole = "0";
     	String numer = "0";
-    	String denom = "0";
+    	String denom = "1";
     	
     	//sets whole number
-		int index1 = first.indexOf("_");
+		int index1 = input.indexOf("_");
     	if (index1 > 0) {
-    		whole = first.substring(0, index1);
+    		whole = input.substring(0, index1);
     	}
     	//sets numerator if there is an underscore (with whole number)
     	if (index1 > 0) {
-    		numer = first.substring((index1 + 1), slash);
+    		numer = input.substring((index1 + 1), slash);
+    		
         //sets numerator if there is no underscore (no whole number)
-    	} else {
-    		numer = first.substring(0, slash);
+    	} else if(slash > 0) {
+    		numer = input.substring(0, slash);
     	}
     	
     	//sets denominator
     	if (slash > 0) {
-    		denom = first.substring((slash + 1), length);
+    		denom = input.substring((slash + 1), length);
+    		//numer = input.substring(0, slash);
     		
     	} else {
         	System.out.println();
-    		whole = first;
+    		whole = input;
     		denom = "1";
     	}
-
-    	list1[1] = whole;
-    	list1[2] = numer;
-    	list1[3] = denom;
-    	System.out.println("whole:" + whole + " numerator:" + numer + " denominator:" + denom);
-    	
-    	return list1;
-    }
-    
-    /* secondFraction is also for identifying each integer within the second variable
-     * in the String, then returning the completed assigned statement back to the
-     * main method */
-    
-    public static String secondFraction(String second) {
-	
-		int length = second.length();
-    	int slash = second.indexOf("/");
-    	
-    	String whole = "0";
-    	String numer = "0";
-    	String denom = "0";
-    	
-    	//sets whole number
-		int index1 = second.indexOf("_");
-    	if (index1 > 0) {
-    		whole = second.substring(0, index1);
-    	}
-    	//sets numerator if there is an underscore (with whole number)
-    	if (index1 > 0) {
-    		numer = second.substring((index1 + 1), slash);
-        //sets numerator if there is no underscore (no whole number)
-    	} else {
-    		numer = second.substring(0, slash);
-    	}
-    	
-    	//sets denominator
-    	if (slash > 0) {
-    		denom = second.substring((slash + 1), length);
-    		
-    	} else {
-        	System.out.println();
-    		whole = second;
-    		denom = "1";
-    	}
-    	String[] list2 = new String [3];
-    	list2[1] = whole;
-    	list2[2] = numer;
-    	list2[3] = denom;
-    	System.out.println("whole:" + whole + " numerator:" + numer + " denominator:" + denom);
-    	
-    	return list2;
-    }
+    	return "whole:" + whole + " numerator:" + numer + " denominator:" + denom;
+    }  
 }
