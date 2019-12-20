@@ -12,25 +12,45 @@ public class FracCalc {
     public static void main(String[] args) {
     	Scanner console = new Scanner(System.in);
     	String input;
-    	
+    	String[] list1 = new String [3];
         System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
         input = console.nextLine();
+        produceAnswer(input);
+    	//while (!input.equals("quit")) {
+        //String second = produceAnswer(input);
+        //String firstFracArray = firstFraction(input);
+        //String secondFracArray = secondFraction(input);
         
-    	while (!input.equals("quit")) {
-        String second = produceAnswer(input);
-        String first = firstFraction(input);
-        String secondFrac = secondFraction(second);
-        System.out.println();
-        System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
-        input = console.nextLine();
+        //System.out.println();
+        //System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
+        //input = console.nextLine();
         }
     }
     
     public static String produceAnswer(String input) { 
-    	int length = input.length();
-    	int space = input.indexOf(" ") + 3;
+    	//int length = input.length();
+    	//int space = input.indexOf(" ") + 3;
     	
-    	return input.substring(space, length);
+    	//return input.substring(space, length);
+    	
+    	/*Scanner console = new Scanner(System.in);
+    	String input;
+    	String[] list1 = new String [3];
+        System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
+        input = console.nextLine(); */
+        
+    	while (!input.equals("quit")) {
+        //String second = produceAnswer(input);
+        String firstFracArray = firstFraction(input);
+        
+        String secondFracArray = secondFraction(input);
+        
+        System.out.println();
+        System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
+        input = console.nextLine();
+        
+    	}
+    	System.out.println("whole:" + whole + " numerator:" + numer + " denominator:" + denom);
     }
     
     /* firstFraction is for identifying each number within the first variable in the 
@@ -70,8 +90,13 @@ public class FracCalc {
     		whole = first;
     		denom = "1";
     	}
+
+    	list1[1] = whole;
+    	list1[2] = numer;
+    	list1[3] = denom;
     	System.out.println("whole:" + whole + " numerator:" + numer + " denominator:" + denom);
-    	return whole, numer, denom;
+    	
+    	return list1;
     }
     
     /* secondFraction is also for identifying each integer within the second variable
@@ -109,8 +134,12 @@ public class FracCalc {
     		whole = second;
     		denom = "1";
     	}
+    	String[] list2 = new String [3];
+    	list2[1] = whole;
+    	list2[2] = numer;
+    	list2[3] = denom;
     	System.out.println("whole:" + whole + " numerator:" + numer + " denominator:" + denom);
-    	System.out.println();
-    	return whole, numer, denom;
+    	
+    	return list2;
     }
 }
