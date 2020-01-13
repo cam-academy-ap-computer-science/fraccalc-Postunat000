@@ -256,27 +256,26 @@ public class FracCalc {
     	int slash = finalFrac.indexOf("/");
     	int temp1 = 0;
     	int temp2 = 0;
-    	String finalFRAC = "yes";
+    	String finalFRAC = "0";
     	
     	String whole1 = "0";
     	String numer1 = finalFrac.substring(0, slash);
-    	String denom1 = finalFrac.substring(slash + 1, length + 1);
+    	String denom1 = finalFrac.substring((slash + 1), length);
     	
     	int numer = Integer.parseInt(numer1);
     	int denom = Integer.parseInt(denom1);
     	int whole = Integer.parseInt(whole1);
     	
     	if (numer > denom) {
-    	temp1 = numer / denom;
-    	whole = temp1;
-    	temp2 = numer % denom;
-    	numer = temp2;
-    	finalFRAC =  whole + "_" + numer + "/" + denom;
+    		temp1 = numer / denom;
+    		whole = temp1;
+    		temp2 = numer % denom;
+    		numer = temp2;
+    		return finalFRAC =  whole + "_" + numer + "/" + denom;
     	
     	} else {
-    		finalFRAC = numer + "/" + denom;
+    		return finalFRAC = numer + "/" + denom;
     	}
-    	return finalFRAC;
     }
 }
 
