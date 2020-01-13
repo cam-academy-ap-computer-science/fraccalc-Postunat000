@@ -196,8 +196,12 @@ public class FracCalc {
     	int denom1 = Integer.parseInt(arrays1[2]);
     	int denom2 = Integer.parseInt(arrays2[2]);
     	
+    	//System.out.println("Whole1: " + whole1 + " whole2: " + whole2 + " numer1: " + numer1 + " numer2: " + numer2);
+    	
     	//do the math with the converted string-to-int variables
     	//make them into improper fractions
+    	
+   // if the number is positive
     	
     	if (whole1 > 0) {
     		idk1 = whole1 * denom1;
@@ -206,9 +210,22 @@ public class FracCalc {
     		allNums[0] = numer1;
     		allNums[1] = denom1;
     		
+    // if the number is negative
+    		
+    	} if (whole1 < 0) {
+    		idk1 = whole1 * denom1;
+    		idk2 = idk1 - numer1;
+    		numer1 = idk2;
+    		allNums[0] = numer1;
+    		allNums[1] = denom1;
+    		
+    // if no whole number is present
+    	
     	} else {
     		allNums[0] = numer1;
     		allNums[1] = denom1;
+    		
+    // if the number is positive
     		
     	} if (whole2 > 0) {
     		idk1 = whole2 * denom2;
@@ -217,16 +234,24 @@ public class FracCalc {
     		allNums[2] = numer2;
     		allNums[3] = denom2;
     		
+    // if the number is negative
+    		
+    	} if (whole2 < 0) {
+    		idk1 = whole2 * denom2;
+    		idk2 = idk1 - numer2;
+    		numer1 = idk2;
+    		allNums[2] = numer2;
+    		allNums[3] = denom2;
+    		
+    // if no whole number is present
+    		
     	} else {
     		allNums[2] = numer2;
     		allNums[3] = denom2;
     	}
+    	System.out.println("First: " + allNums[1] + "//" + allNums[2] + " Second: " + allNums[3] + "//" + allNums[4]);
     	return allNums;
     }
 }
-
-
-
-
 
 
