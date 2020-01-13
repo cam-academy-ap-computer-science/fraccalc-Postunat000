@@ -15,9 +15,9 @@ public class FracCalc {
         String input = console.nextLine();
         
     	while (!input.equals("quit")) {
-        String finalFrac = produceAnswer(input);
+        String finalFRAC = produceAnswer(input);
         System.out.println();
-        System.out.println("The final fraction is: " + finalFrac);
+        System.out.println("The final fraction is: " + finalFRAC);
         System.out.println();
         
         System.out.print("What calculation may I perform for you, my liege (type quit to stop)? ");
@@ -48,8 +48,9 @@ public class FracCalc {
         String[] secondFrac = secondFraction(operand2, arrays2);
         
         String finalFrac = doTheMathPlz(firstFrac, secondFrac, operator);
+        String finalFRAC = reduce(finalFrac);
     	
-    	return finalFrac;
+    	return finalFRAC;
     }
     
     /* firstFraction is for identifying each number within the first variable in the 
@@ -196,8 +197,6 @@ public class FracCalc {
     	int denom1 = Integer.parseInt(arrays1[2]);
     	int denom2 = Integer.parseInt(arrays2[2]);
     	
-    	//System.out.println("Whole1: " + whole1 + " whole2: " + whole2 + " numer1: " + numer1 + " numer2: " + numer2);
-    	
     	//do the math with the converted string-to-int variables
     	//make them into improper fractions
     	
@@ -239,7 +238,7 @@ public class FracCalc {
     	} if (whole2 < 0) {
     		idk1 = whole2 * denom2;
     		idk2 = idk1 - numer2;
-    		numer1 = idk2;
+    		numer2 = idk2;
     		allNums[2] = numer2;
     		allNums[3] = denom2;
     		
@@ -249,8 +248,35 @@ public class FracCalc {
     		allNums[2] = numer2;
     		allNums[3] = denom2;
     	}
-    	System.out.println("First: " + allNums[1] + "//" + allNums[2] + " Second: " + allNums[3] + "//" + allNums[4]);
     	return allNums;
+    }
+    
+    public static String reduce(String finalFrac) {
+    	int length = finalFrac.length();
+    	int slash = finalFrac.indexOf("/");
+    	int temp1 = 0;
+    	int temp2 = 0;
+    	String finalFRAC = "yes";
+    	
+    	String whole1 = "0";
+    	String numer1 = finalFrac.substring(0, slash);
+    	String denom1 = finalFrac.substring(slash + 1, length + 1);
+    	
+    	int numer = Integer.parseInt(numer1);
+    	int denom = Integer.parseInt(denom1);
+    	int whole = Integer.parseInt(whole1);
+    	
+    	if (numer > denom) {
+    	temp1 = numer / denom;
+    	whole = temp1;
+    	temp2 = numer % denom;
+    	numer = temp2;
+    	finalFRAC =  whole + "_" + numer + "/" + denom;
+    	
+    	} else {
+    		finalFRAC = numer + "/" + denom;
+    	}
+    	return finalFRAC;
     }
 }
 
