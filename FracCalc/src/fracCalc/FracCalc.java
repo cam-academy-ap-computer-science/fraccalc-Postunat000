@@ -273,7 +273,7 @@ public class FracCalc {
     		numer = temp2;
     		return finalFRAC =  whole + "_" + numer + "/" + denom;
     	
-    	} else {
+    	} else { // if nothing needs to be changed
     		return finalFRAC = numer + "/" + denom;
     	}
     }
