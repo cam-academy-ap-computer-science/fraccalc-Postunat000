@@ -47,7 +47,10 @@ public class FracCalc {
         String[] firstFrac = firstFraction(operand1, arrays1);
         String[] secondFrac = secondFraction(operand2, arrays2);
         
+        System.out.println("firstFrac: " + firstFrac[0] + "_" + firstFrac[1] + "/" + firstFrac[2] + " secondFrac: " + secondFrac[0] + "_" + secondFrac[1] + "/" + secondFrac[2]);
+        
         String finalFrac = doTheMathPlz(firstFrac, secondFrac, operator);
+        System.out.println(finalFrac);
         String finalFRAC = reduce(finalFrac);
     	
     	return finalFRAC;
@@ -158,6 +161,12 @@ public class FracCalc {
     	if (operator.contentEquals("/")) {
     		finalNumer = reducedArray[0] * reducedArray[3];
     		finalDenom = reducedArray[1] * reducedArray[2];
+    		if (finalDenom < 0) {
+    		temp1 = finalNumer * -1;
+    		temp2 = finalDenom * -1;
+    		finalNumer = temp1;
+    		finalDenom = temp2;
+    		}
     	}
     	if (operator.contentEquals("-")) {
     		temp1 = reducedArray[0] * reducedArray[3]; // numerator of first frac
@@ -278,16 +287,32 @@ public class FracCalc {
     			denom = temp4;
     		}
     	}
-    	temp1 = numer % denom;
-    	if (temp1 > 0) { 
-    		whole = temp1;
+    	if ()
+    	temp1 = numer / denom; // whole number
+    	whole = temp1;
+    	temp2 = numer % denom; // numerator
+    	numer = temp2;
+    	
+    	if (whole != 0 && numer != 0) { 
     		String finalFracc = whole + "_" + numer + "/" + denom;
     		return finalFracc;
-    	} else {
-        	String finalFracc = numer + "/" + denom;
+    		
+    	} if (whole == 0 && numer == 0) {
+        	String finalFracc = "0";
         	return finalFracc;
+        	
+    	} if (whole == 0 && numer != 0) {
+    		String finalFracc = numer + "/" + denom;
+    		return finalFracc;
+    		
+    	} if (whole != 0 && numer == 0) {
+    		String finalFracc = "" + whole;
+    		return finalFracc;
+    		
     	}
+    	return "";
     }
 }
 
-
+/* first take away the negatives and do the math in reduce, and then accordingly to where the whole and numerator
+ * are and if they are 0 or not, then assign the negative to where it should be. */
