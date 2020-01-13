@@ -256,6 +256,8 @@ public class FracCalc {
     	int slash = finalFrac.indexOf("/");
     	int temp1 = 0;
     	int temp2 = 0;
+    	int temp3 = 0;
+    	int temp4 = 0;
     	String finalFRAC = "0";
     	
     	String whole1 = "0";
@@ -266,15 +268,24 @@ public class FracCalc {
     	int denom = Integer.parseInt(denom1);
     	int whole = Integer.parseInt(whole1);
     	
-    	if (numer > denom) {
-    		temp1 = numer / denom;
+    	for (int i = denom; i >= 2; i--) {
+    		temp1 = numer % i;
+    		temp2 = denom % i;
+    		if (temp1 == 0 && temp2 == 0) {
+    			temp3 = numer / i;
+    			temp4 = denom / i;
+    			numer = temp3;
+    			denom = temp4;
+    		}
+    	}
+    	temp1 = numer % denom;
+    	if (temp1 > 0) { 
     		whole = temp1;
-    		temp2 = numer % denom;
-    		numer = temp2;
-    		return finalFRAC =  whole + "_" + numer + "/" + denom;
-    	
-    	} else { // if nothing needs to be changed
-    		return finalFRAC = numer + "/" + denom;
+    		String finalFracc = whole + "_" + numer + "/" + denom;
+    		return finalFracc;
+    	} else {
+        	String finalFracc = numer + "/" + denom;
+        	return finalFracc;
     	}
     }
 }
